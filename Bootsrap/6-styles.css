@@ -1,0 +1,36 @@
+:root {
+	--color-primary: #E0003C;
+	--color-hover: #BC1340;
+	--color-white: #FFFFFF;
+	--color-text: #8C8C8C;
+	--card-radius: 1rem;
+}
+
+.btn-primary {
+	background-color: var(--color-primary);
+	border-color: var(--color-hover);
+}
+
+.btn-primary:hover, .btn-outline-primary:hover{
+	background-color: var(--color-hover);
+	border-color: var(--color-hover);
+}
+
+.btn-outline-primary{
+	border-color: var(--color-hover);
+	color: var(--color-hover);
+}
+
+.text-muted{
+	color: var(--color-text);
+}
+
+a, a:hover, a:focus {
+	border-color: var(--color-primary);
+}
+
+ .card-header, .card-footer {
+	background-color: var(--color-primary);
+	color: var(--color-white);
+	border-radius: var(--card-radius);
+}
