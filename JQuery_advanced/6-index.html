@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Task 0</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function() {
+            createFamilyTree();
+            createForm();
+
+            function createFamilyTree() {
+                $('body').prepend(
+                    $('<table>').append(
+                        $('<thead>').append(
+                            $('<tr>').append(
+                                $('<th>').text('Firstname'),
+                                $('<th>').text('Lastname')
+                            )
+                        ),
+                        $('<tbody>')
+                    )
+                );
+            }
+
+            function addNewMember(firstName, lastName, position) {
+                var newRow = $('<tr>').append(
+                    $('<td>').text(firstName),
+                    $('<td>').text(lastName),
+                    $('<td>').text('(x)').css('background-color', 'orange').click(function() {
+                        $(this).closest('tr').remove();
+                    })
+                );
+
+                if (position === 'before') {
+                    $('tbody').prepend(newRow);
+                } else {
+                    $('tbody').append(newRow);
+                }
+            }
+
+            function createForm() {
+                var formHTML = '<form id="memberForm">' +
+                                    '<input type="text" name="firstName" placeholder="First Name">' +
+                                    '<input type="text" name="lastName" placeholder="Last Name">' +
+                                    '<select name="position">' +
+                                        '<option value="before">Before</option>' +
+                                        '<option value="after">After</option>' +
+                                    '</select>' +
+                                    '<input type="submit" value="Add Member">' +
+                                '</form>';
+
+                $('body').prepend(formHTML);
+
+                $('#memberForm').submit(function(event) {
+                    event.preventDefault();
+                    var firstName = $('input[name="firstName"]').val();
+                    var lastName = $('input[name="lastName"]').val();
+                    var position = $('select[name="position"]').val();
+                    addNewMember(firstName, lastName, position);
+                    $('#memberForm')[0].reset();
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
